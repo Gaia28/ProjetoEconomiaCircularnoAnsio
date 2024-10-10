@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="EditTextEmail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:background">@drawable/editext_container</item>
+        <item name="android:hint">E-mail:</item>
+        <item name="android:maxLength">26</item>
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:inputType">textEmailAddress</item>
+
+    </style>
+
+    <style name="EditTextNome">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:padding">15dp</item>
+    <item name="android:background">@drawable/editext_container</item>
+    <item name="android:hint">Nome:</item>
+    <item name="android:maxLength">26</item>
+    <item name="android:layout_margin">30dp</item>
+    <item name="android:layout_marginEnd">20dp</item>
+    <item name="android:layout_marginTop">20dp</item>
+    <item name="android:inputType">text</item>
+    </style>
+
+    <style name="EditTextSenha">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:background">@drawable/editext_container</item>
+        <item name="android:hint">Senha:</item>
+        <item name="android:maxLength">26</item>
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:inputType">textPassword</item>
+
+    </style>
+
+    <style name="button">
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">60dp</item>
+    <item name="android:backgroundTint">@color/black_red </item>
+    <item name="android:text">Entrar</item>
+    <item name="fontFamily">Arial</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">20dp </item>
+
+    </style>
+    <style name="Cadastrar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:text">Crie uma Conta</item>
+        <item name="fontFamily">Arial</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp </item>
+
+    </style>
+
+    <style name="BoasVindas">
+        <item name="android:layout_width">183dp</item>
+        <item name="android:layout_height">95dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">Arial</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">40sp </item>
+
+    </style>
+
+    <style name="ContainerComponents">
+        <item name="android:layout_width"> match_parent </item>
+        <item name="android:layout_height"> 350dp </item>
+        <item name="android:background"> @drawable/container_components </item>
+        <item name="android:layout_margin">20dp</item>
+
+    </style>
+
+    <style name="bt_cadastrar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:text">CADASTRAR</item>
+        <item name="fontFamily">Arial</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp </item>
+
+
+
+    </style>
+
+    <style name="ContairnerMenu">
+    <item name="background">@drawable/menu_container</item>
+    <item name="android:layout_width">157dp</item>
+    <item name="android:layout_height">match_parent</item>
+
+    </style>
+
+
+
+
+
+</resources>

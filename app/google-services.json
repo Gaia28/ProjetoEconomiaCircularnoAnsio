@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311178225057",
+    "project_id": "projeto-economia-circula-6d1c3",
+    "storage_bucket": "projeto-economia-circula-6d1c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311178225057:android:9df96ac52a6ba81bd197e0",
+        "android_client_info": {
+          "package_name": "com.example.projetoeconomiacircularnoansio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgV7xU_o42hDKgEZawX9ZOikLYdCKCHag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
