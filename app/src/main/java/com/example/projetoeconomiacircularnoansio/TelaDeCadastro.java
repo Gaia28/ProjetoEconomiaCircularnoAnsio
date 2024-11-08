@@ -5,9 +5,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -35,19 +37,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 
 public class TelaDeCadastro extends AppCompatActivity {
-    private EditText NomeCadastro, EmailCadastro, SenhaCadastro;
-    private Button bt_cadastrar;
+
+    //Variaveis usadas nessa tela
+    private EditText NomeCadastro, EmailCadastro, SenhaCadastro, CPF,TelefoneCadastro;
     String[] mensagens = {"Preencha Todos os Campos","Cadastro Realizado com Sucesso"};
     public int AnisioCoin = 0;
     String UserId;
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela_de_cadastro);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -62,15 +67,15 @@ public class TelaDeCadastro extends AppCompatActivity {
         String Nome = NomeCadastro.getText().toString();
         String Email = EmailCadastro.getText().toString();
         String Senha = SenhaCadastro.getText().toString();
+        String cpf = CPF.getText().toString();
 
-        if (Nome.isEmpty() || Email.isEmpty() || Senha.isEmpty()){
-            Snackbar BarraDeAviso = Snackbar.make(view, mensagens[0], Snackbar.LENGTH_SHORT);
-            BarraDeAviso.setBackgroundTint(Color.WHITE);
-            BarraDeAviso.setTextColor(Color.BLACK);
-            BarraDeAviso.show();
+
+        if (Nome.isEmpty() || Email.isEmpty() || Senha.isEmpty() || cpf.isEmpty()){
+            Toast toast = Toast.makeText(TelaDeCadastro.this, mensagens[0], Toast.LENGTH_SHORT);
+            toast.show();
+
         }else{
             CadastrarUser(view);
-            Logar();
 
         }
 
@@ -84,16 +89,27 @@ public class TelaDeCadastro extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     SalvarDadosUser();
-                    Snackbar BarraDeAviso = Snackbar.make(v, mensagens[1], Snackbar.LENGTH_SHORT);
-                    BarraDeAviso.setBackgroundTint(Color.WHITE);
-                    BarraDeAviso.setTextColor(Color.BLACK);
-                    BarraDeAviso.show();
+                    Toast toast = Toast.makeText(TelaDeCadastro.this, mensagens[1], Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        //Classe para mudar de tela após o usuário se cadastrar
+                        public void run() {
+                            Intent TelaLogin = new Intent(TelaDeCadastro.this, TelaDeLogin.class);
+                            startActivity(TelaLogin);
+                            finish();
+
+                        }
+                        //tempo  de carregamento para esse redirecionamento
+                    },SPLASH_TIME_OUT);
+                    //caso o usuário tente cadastrar algum dado inválido
                 }else{
                     String erro;
                     try {
                         throw task.getException();
                     }catch (FirebaseAuthWeakPasswordException e){
-                        erro = "Sua senha deve conater no minímo 6 caractéres";
+                        erro = "Sua senha deve conter no minímo 6 caractéres";
                     }catch (FirebaseAuthUserCollisionException e){
                         erro = "E-mail já cadastrado";
                     }catch (FirebaseAuthInvalidCredentialsException e){
@@ -102,20 +118,22 @@ public class TelaDeCadastro extends AppCompatActivity {
                     }catch (Exception e){
                         erro = "Erro ao cadastrar usuário";
                     }
-                    Snackbar BarraDeAviso = Snackbar.make(v, erro, Snackbar.LENGTH_SHORT);
-                    BarraDeAviso.setBackgroundTint(Color.WHITE);
-                    BarraDeAviso.setTextColor(Color.BLACK);
-                    BarraDeAviso.show();
+                    //barra de aviso
+                    Toast toast = Toast.makeText(TelaDeCadastro.this, erro, Toast.LENGTH_SHORT);
+                    toast.show();
+
 
                 }
             }
         });
 
     }
-    private void  SalvarDadosUser(){
+    public void  SalvarDadosUser(){
         String Nome = NomeCadastro.getText().toString();
         String Email = EmailCadastro.getText().toString();
         String Senha = SenhaCadastro.getText().toString();
+        String CPFcadastrar = CPF.getText().toString();
+        String Telefone = TelefoneCadastro.getText().toString();
         int anisioCoin = AnisioCoin;
 
 
@@ -125,6 +143,8 @@ public class TelaDeCadastro extends AppCompatActivity {
         usuarios.put("Nome", Nome);
         usuarios.put("Email", Email);
         usuarios.put("Senha", Senha);
+        usuarios.put("CPF", CPFcadastrar);
+        usuarios.put("Telefone", Telefone);
         usuarios.put("Saldo", anisioCoin);
         UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -132,17 +152,12 @@ public class TelaDeCadastro extends AppCompatActivity {
         Referencia.set(usuarios);
 
     }
-    private void Logar(){
-        Intent TelaDeLogin = new Intent(TelaDeCadastro.this,TelaDeLogin.class);
-        startActivity(TelaDeLogin);
-        finish();
-    }
 
-    private void IniciarComponentes(){
+    private void IniciarComponentes() {
         NomeCadastro = findViewById(R.id.NomeCadastro);
         EmailCadastro = findViewById(R.id.EmailCadastro);
         SenhaCadastro = findViewById(R.id.SenhaCadastro);
-
-
+        CPF = findViewById(R.id.CPF);
+        TelefoneCadastro = findViewById(R.id.editTextPhone);
     }
 }

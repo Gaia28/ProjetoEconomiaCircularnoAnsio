@@ -5,19 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/verde_pastel"
+    android:background="@drawable/gradient"
     tools:context=".TelaDeCadastro">
 
     <View
         android:id="@+id/view"
         style="@style/ContainerComponents"
-        android:layout_marginBottom="128dp"
+        android:layout_width="377dp"
+        android:layout_height="530dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCadastro"
-        app:layout_constraintVertical_bias="0.267" />
+        app:layout_constraintTop_toBottomOf="@+id/textCadastro" />
 
     <EditText
         android:id="@+id/NomeCadastro"
@@ -31,8 +32,8 @@
 
     <EditText
         android:id="@+id/EmailCadastro"
-
         style="@style/EditTextEmail"
+        android:drawableRight="@drawable/baseline_email_24"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="1.0"
@@ -40,13 +41,30 @@
         app:layout_constraintTop_toBottomOf="@+id/NomeCadastro" />
 
     <EditText
+        android:id="@+id/CPF"
+        style="@style/EditTextCpf"
+        android:drawableRight="@drawable/baseline_perm_identity_24"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/EmailCadastro" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        style="@style/EditTextTelefone"
+        android:drawableRight="@drawable/baseline_local_phone_24"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/CPF" />
+
+    <EditText
         android:id="@+id/SenhaCadastro"
         style="@style/EditTextSenha"
+        android:drawableRight="@drawable/baseline_remove_red_eye_24"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/EmailCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -61,7 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.061"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/bt_cadastrar"

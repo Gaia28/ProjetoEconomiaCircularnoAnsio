@@ -10,6 +10,7 @@
     <style name="Theme.ProjetoEconomiaCircularNoAnísio.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Theme.ProjetoEconomiaCircularNoAnísio.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListaUsuers"
+    tools:ignore="Orientation">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="414dp"
+        android:layout_height="594dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BarraSuperior"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/BarraInferior"
+        android:layout_width="472dp"
+        android:layout_height="69dp"
+        android:background="@drawable/container_barra_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+    </View>
+
+
+    <ImageView
+        android:id="@+id/iconeHome"
+        android:layout_width="45dp"
+        android:layout_height="39dp"
+        android:onClick="AbaHome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/BarraInferior"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="@+id/BarraInferior"
+        app:layout_constraintTop_toTopOf="@+id/BarraInferior"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/icon_5156506_1280" />
+
+    <ImageView
+        android:id="@+id/MenuPerfil"
+        android:layout_width="70dp"
+        android:layout_height="59dp"
+        android:onClick="AbaPerfil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/BarraInferior"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="@+id/BarraInferior"
+        app:layout_constraintTop_toTopOf="@+id/BarraInferior"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/image_removebg_preview__3_" />
+
+    <ImageView
+        android:id="@+id/IconeDoar"
+        android:layout_width="57dp"
+        android:layout_height="49dp"
+        android:onClick="AbaDoaçao"
+        app:layout_constraintBottom_toBottomOf="@+id/BarraInferior"
+        app:layout_constraintEnd_toStartOf="@+id/MenuSobre"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+        app:layout_constraintTop_toTopOf="@+id/BarraInferior"
+        app:srcCompat="@drawable/icone_doar" />
+
+    <ImageView
+        android:id="@+id/MenuSobre"
+        android:layout_width="53dp"
+        android:layout_height="44dp"
+        android:onClick="AbaInformaçoes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/MenuPerfil"
+        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/BarraInferior"
+        app:layout_constraintVertical_bias="0.6"
+        app:srcCompat="@drawable/baseline_info_outline_24" />
+
+    <View
+        android:id="@+id/BarraSuperior"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="@color/AzulIntermediario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/MenuIcone"
+        android:layout_width="37dp"
+        android:layout_height="32dp"
+        android:onClick="MostrarOpçoes"
+        app:layout_constraintBottom_toBottomOf="@+id/BarraSuperior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="@+id/BarraSuperior"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.609"
+        app:srcCompat="@drawable/baseline_menu_24" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="276dp"
+        android:layout_height="37dp"
+        android:background="@drawable/container_pesquisa"
+        app:layout_constraintBottom_toBottomOf="@+id/BarraSuperior"
+        app:layout_constraintEnd_toStartOf="@+id/MenuIcone"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/BarraSuperior"
+        app:layout_constraintVertical_bias="0.527" />
+
+    <SearchView
+        android:layout_width="266dp"
+        android:layout_height="29dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view4">
+
+    </SearchView>
+
+    <View
+        android:id="@+id/ViewMenu"
+        android:layout_width="157dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/menu_container"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </View>
+
+    <ImageView
+        android:id="@+id/ViewIconeMinimizar"
+        android:layout_width="37dp"
+        android:layout_height="32dp"
+        android:visibility="invisible"
+        android:onClick="FecharOpçoes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ViewMenu"
+        app:layout_constraintVertical_bias="0.035"
+        app:srcCompat="@drawable/baseline_menu_24" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

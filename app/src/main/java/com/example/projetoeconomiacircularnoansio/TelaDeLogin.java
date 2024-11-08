@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -21,14 +23,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.auth.User;
 
 public class TelaDeLogin extends AppCompatActivity {
+    //Variaveis usadas
     private EditText Email, Senha;
     String[] mensagens = {"Preencha Todos os Campos", "Login efetuado com Sucesso"};
+    String UserId = "cnayi0QL18ZtpNvuD6YsFlRpdFS2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela_de_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -37,19 +43,27 @@ public class TelaDeLogin extends AppCompatActivity {
             return insets;
 
         });
+        //Chamar a função dos Componentes
         IniciarComponents();
+
     }
+//Função de Click do botão Entar
 
     public void Entrar(View view) {
         String email = Email.getText().toString();
         String senha = Senha.getText().toString();
 
+//Se os campos de texto estiverem vazios: mostrar uma barra  de aviso
+
         if (email.isEmpty() || senha.isEmpty()){
-            Snackbar BarraDeAviso = Snackbar.make(view, mensagens[0], Snackbar.LENGTH_SHORT);
-            BarraDeAviso.setBackgroundTint(Color.WHITE);
-            BarraDeAviso.setTextColor(Color.BLACK);
-            BarraDeAviso.show();
+            Toast toast = Toast.makeText(TelaDeLogin.this, mensagens[0], Toast.LENGTH_SHORT);
+            toast.show();
+
+            //se tudo estiver ok: chama a função autenticar uuario
+
         }else{
+            Toast toast = Toast.makeText(TelaDeLogin.this, mensagens[1], Toast.LENGTH_SHORT);
+            toast.show();
             AutenticarUser(view);
 
         }
@@ -68,7 +82,7 @@ public class TelaDeLogin extends AppCompatActivity {
                         public void run() {
                             TelaPrincipal();
                         }
-                    }, 1500);
+                    }, 900);
 
 
                 } else {
@@ -77,10 +91,8 @@ public class TelaDeLogin extends AppCompatActivity {
                         throw task.getException();
                     } catch (Exception e) {
                         erro = "E-mail ou senha incorretos";
-                        Snackbar BarraDeAviso = Snackbar.make(view, erro, Snackbar.LENGTH_SHORT);
-                        BarraDeAviso.setBackgroundTint(Color.WHITE);
-                        BarraDeAviso.setTextColor(Color.BLACK);
-                        BarraDeAviso.show();
+                        Toast toast = Toast.makeText(TelaDeLogin.this, erro, Toast.LENGTH_SHORT);
+                        toast.show();
                     }
 
                 }
@@ -89,7 +101,7 @@ public class TelaDeLogin extends AppCompatActivity {
 
     }
     private void TelaPrincipal(){
-        Intent MudarTela = new Intent(TelaDeLogin.this, TelaPrincipal.class);
+        Intent MudarTela = new Intent(TelaDeLogin.this, TelaDePerfil.class);
         startActivity(MudarTela);
         finish();
 
@@ -105,12 +117,13 @@ public class TelaDeLogin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser UsuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
-        if (UsuarioAtual != null){
 
+        if (UsuarioAtual != null){
             TelaPrincipal();
         }
-
     }
+
+
     private void IniciarComponents(){
         Email = findViewById(R.id.email);
         Senha = findViewById(R.id.senha);

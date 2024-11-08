@@ -5,4 +5,8 @@
     <color name="verde_escuro">#006400</color>
     <color name="black_red">#561818</color>
     <color name="verde_pastel">#449f6d</color>
+    <color name="cinza">#808080</color>
+    <color name="AzulEscuro">#0000FF</color>
+    <color name="AzulIntermediario">#1177DE</color>
+    <color name="AzulClaro">#2196F3</color>
 </resources>

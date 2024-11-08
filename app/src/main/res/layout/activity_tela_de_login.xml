@@ -3,38 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/verde_escuro"
+    android:background="@drawable/gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaDeLogin">
+    tools:context=".TelaDeLogin"
+    tools:ignore="ExtraText">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="629dp"
-        android:layout_height="906dp"
+    <View
+        android:id="@+id/ContainerSuperior"
+        android:layout_width="415dp"
+        android:layout_height="168dp"
+        android:background="@drawable/container_superior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.505"
-        app:srcCompat="@drawable/tenativa_de_bg" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="350dp"
+        android:layout_height="77dp"
+        android:background="@drawable/container_inferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_tela_cadastro"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/LogoAnisioCoin"
+        android:layout_width="132dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/anisio_coin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="@+id/ContainerSuperior"
+        app:layout_constraintTop_toTopOf="@+id/ContainerSuperior" />
 
     <EditText
         android:id="@+id/email"
         style="@style/EditTextEmail"
+        android:drawableRight="@drawable/baseline_email_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429" />
+        app:layout_constraintTop_toBottomOf="@+id/BoasVindas"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/senha"
         style="@style/EditTextSenha"
+
+        android:layout_marginTop="92dp"
+        android:drawableRight="@drawable/baseline_remove_red_eye_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.0" />
@@ -42,12 +70,15 @@
     <Button
         android:id="@+id/bt_entrar"
         style="@style/button"
+        android:layout_marginTop="36dp"
         android:onClick="Entrar"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/senha"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text_tela_cadastro"
@@ -57,22 +88,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_entrar"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.226"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/BoasVindas"
         style="@style/BoasVindas"
-        android:layout_width="246dp"
-        android:layout_height="172dp"
+        android:layout_width="245dp"
+        android:layout_height="131dp"
         android:text="SEJA
         BEM VINDO"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.281" />
 
 
-=
+    =-->
 </androidx.constraintlayout.widget.ConstraintLayout>

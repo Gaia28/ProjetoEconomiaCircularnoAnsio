@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,13 +15,28 @@
         android:theme="@style/Theme.ProjetoEconomiaCircularNoAnísio"
         tools:targetApi="31">
         <activity
+            android:name=".TranferirMoeda"
+            android:exported="false" />
+        <activity
+            android:name=".ListaUsuers"
+            android:exported="false" />
+        <activity
+            android:name=".TelaAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".TelaDeDoacao"
+            android:exported="false" />
+        <activity
+            android:name=".TelaDeInformacao"
+            android:exported="false" />
+        <activity
+            android:name=".TelaDePerfil"
+            android:exported="false" />
+        <activity
             android:name=".TelaPrincipal"
             android:exported="false"
             android:label="@string/title_activity_tela_principal"
             android:theme="@style/Theme.ProjetoEconomiaCircularNoAnísio.NoActionBar" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
         <activity
             android:name=".TelaDeCadastro"
             android:exported="false" />
