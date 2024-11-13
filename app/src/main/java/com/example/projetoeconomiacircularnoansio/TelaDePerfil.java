@@ -1,13 +1,18 @@
 package com.example.projetoeconomiacircularnoansio;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -17,12 +22,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.Source;
 import com.google.firebase.firestore.Transaction;
 
@@ -36,11 +46,12 @@ public class TelaDePerfil extends AppCompatActivity {
     EditText textvalor, textIduser;
     FirebaseFirestore database = FirebaseFirestore.getInstance();
     String Userid;
+    String UserRecebedor;
     ImageView IconeMinimizar;
     ImageView MenuIcone;
     View ViewMenu;
     Button Abauser;
-    int saldo;
+
 
 
     @Override
@@ -55,7 +66,7 @@ public class TelaDePerfil extends AppCompatActivity {
         });
         IniciarComponents();
     }
-
+/**---------------------------BOTÔES---------------------------*/
     public void AbaInformaçoes(View view) {
         Intent AbrirTelaInfo = new Intent(TelaDePerfil.this, TelaDeInformacao.class);
         startActivity(AbrirTelaInfo);
@@ -84,6 +95,29 @@ public class TelaDePerfil extends AppCompatActivity {
         finish();
     }
 
+
+    public void MostrarOpçoes(View view) {
+        ViewMenu.setVisibility(View.VISIBLE);
+        MenuIcone.setVisibility(View.INVISIBLE);
+        IconeMinimizar.setVisibility(View.VISIBLE);
+        Abauser.setVisibility(View.VISIBLE);
+    }
+    public void FecharOpçoes(View view) {
+        IconeMinimizar.setVisibility(View.INVISIBLE);
+        MenuIcone.setVisibility(View.VISIBLE);
+        ViewMenu.setVisibility(View.INVISIBLE);
+        Abauser.setVisibility(View.INVISIBLE);
+    }
+
+    public void AbaListUser(View view) {
+        Intent AbrirListaUsr = new Intent(TelaDePerfil.this, ListaUsuers.class);
+        startActivity(AbrirListaUsr);
+        finish();
+    }
+    /**-----------------------FIM-------------------------*/
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -104,51 +138,80 @@ public class TelaDePerfil extends AppCompatActivity {
         });
 
     }
+    //BOTÃO PARA REALIZAR A DOAÇÃO
+
     public void ConcluirTransferencia(View view) {
 
-        textIduser.setText(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+        //VERIFICAÇÃO CASO OS CAMPOS DE TEXTO ESTEJAM VAZIOS - MOSTRAR BARRA DE AVISO
 
+            String getSaldo = textvalor.getText().toString();
+            String getId = textIduser.getText().toString();
+            if (getSaldo.isEmpty() || getId.isEmpty()){
+                Snackbar snackbar = Snackbar.make(view, "Preencha todos os campos", Snackbar.LENGTH_SHORT);
+                snackbar.setBackgroundTint(Color.WHITE);
+                snackbar.setTextColor(Color.BLACK);
+                snackbar.show();
+
+                //CASO ESTEJAM PREENCHIDOS - INICIAR A TRANSAÇÃO
+            }else{
+
+                //VARIAVEL NUMÉRICA - RECEBE O VALOR DO CAMPO DE TEXTO ("textvalor") STRING -> DOUBLE
+                double ValorDoacao = Double.parseDouble(textvalor.getText().toString());
+
+                //VARIAVEL DO BANCO DE DADOS - RECEBE AS COLEÇÕES E DOCUMENTOS QUE SERÃO TRATADOS
+                final DocumentReference referencia = database.collection("Usuários").document(Userid);
+
+
+                //INICIAR A FUNÇÃO DE TRANSAÇÃO DENTRO DO BANCO DE DADOS -> VARIAVEL "database"
+            database.runTransaction(new Transaction.Function<Void>() {
+                @Nullable
+                @Override
+                public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                    DocumentSnapshot snapshot = transaction.get(referencia);
+                    double NovoSaldo = snapshot.getDouble("Saldo") - ValorDoacao;
+
+                    //VERIFICAÇÃO DE SALDO DO USUÁRIO - MOSTRA UMA BARRA DE AVISO
+
+                    if (ValorDoacao > snapshot.getDouble("Saldo")) {
+                        Snackbar snackbar = Snackbar.make(view, "Saldo insuficiente", Snackbar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(Color.WHITE);
+                        snackbar.setTextColor(Color.BLACK);
+                        snackbar.show();
+
+                        // CASO TENHA SALDO SUFICIENTE - UPAR A TRANSAÇÃO PARA O BANCO DE DADOS - MOSTRAR  BARRA  DE AVISO
+                    }else {
+                        transaction.update(referencia, "Saldo", NovoSaldo);
+
+                        ReceberTranferencia(); //Função para o segundo usuário receber a transação
+
+                        Snackbar snackbar = Snackbar.make(view, "Tranferência realizada com sucesso", Snackbar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(Color.WHITE);
+                        snackbar.setTextColor(Color.BLACK);
+                        snackbar.show();
+
+                    }
+                    return null;
+                }
+            });
+}
+        }
+//FUNÇÃO PARA O SEGUNDO USUÁRIO RECEBER A TRANSFERÊNCIA - CHAMA EM "ConcluirTransferência"
+    public void ReceberTranferencia() {
         double ValorDoacao = Double.parseDouble(textvalor.getText().toString());
-
-        final DocumentReference referencia = database.collection("Usuários").document(Userid);
-
-        //ERRO AQUI
-        database.collection("Usuários").document(String.valueOf(textIduser));
-        //
-
+        UserRecebedor = textIduser.getText().toString();
+        DocumentReference documentReference = database.collection("Usuários").document(UserRecebedor);
         database.runTransaction(new Transaction.Function<Void>() {
             @Nullable
             @Override
             public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
-                DocumentSnapshot snapshot = transaction.get(referencia);
-                double NovoSaldo = snapshot.getDouble("Saldo") - ValorDoacao;
-                transaction.update(referencia, "Saldo",NovoSaldo);
-                //ERRO AQUI
-                double SaldoRecebido = snapshot.getDouble("Saldo") + ValorDoacao;
-                transaction.update(referencia, "Saldo", SaldoRecebido);
-                //
+                DocumentSnapshot documentSnapshot = transaction.get(documentReference);
+                double NovoSaldo = documentSnapshot.getDouble("Saldo") + ValorDoacao;
+                transaction.update(documentReference, "Saldo", NovoSaldo);
                 return null;
+
+
             }
         });
-    }
-
-    public void MostrarOpçoes(View view) {
-        ViewMenu.setVisibility(View.VISIBLE);
-        MenuIcone.setVisibility(View.INVISIBLE);
-        IconeMinimizar.setVisibility(View.VISIBLE);
-        Abauser.setVisibility(View.VISIBLE);
-    }
-    public void FecharOpçoes(View view) {
-        IconeMinimizar.setVisibility(View.INVISIBLE);
-        MenuIcone.setVisibility(View.VISIBLE);
-        ViewMenu.setVisibility(View.INVISIBLE);
-        Abauser.setVisibility(View.INVISIBLE);
-    }
-
-    public void AbaListUser(View view) {
-        Intent AbrirListaUsr = new Intent(TelaDePerfil.this, ListaUsuers.class);
-        startActivity(AbrirListaUsr);
-        finish();
     }
 
 

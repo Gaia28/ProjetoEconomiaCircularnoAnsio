@@ -29,7 +29,7 @@ public class TelaDeLogin extends AppCompatActivity {
     //Variaveis usadas
     private EditText Email, Senha;
     String[] mensagens = {"Preencha Todos os Campos", "Login efetuado com Sucesso"};
-    String UserId = "cnayi0QL18ZtpNvuD6YsFlRpdFS2";
+    String UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +113,7 @@ public class TelaDeLogin extends AppCompatActivity {
         finish();
     }
 
-    @Override
+   @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser UsuarioAtual = FirebaseAuth.getInstance().getCurrentUser();

@@ -68,9 +68,11 @@ public class TelaDeCadastro extends AppCompatActivity {
         String Email = EmailCadastro.getText().toString();
         String Senha = SenhaCadastro.getText().toString();
         String cpf = CPF.getText().toString();
+        String telefone = TelefoneCadastro.getText().toString();
 
 
-        if (Nome.isEmpty() || Email.isEmpty() || Senha.isEmpty() || cpf.isEmpty()){
+
+        if (Nome.isEmpty() || Email.isEmpty() || Senha.isEmpty() || cpf.isEmpty() || telefone.isEmpty()){
             Toast toast = Toast.makeText(TelaDeCadastro.this, mensagens[0], Toast.LENGTH_SHORT);
             toast.show();
 
@@ -81,7 +83,6 @@ public class TelaDeCadastro extends AppCompatActivity {
 
     }
     private void  CadastrarUser(View v){
-        String Nome = NomeCadastro.getText().toString();
         String Email = EmailCadastro.getText().toString();
         String Senha = SenhaCadastro.getText().toString();
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(Email,Senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

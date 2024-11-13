@@ -93,9 +93,9 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="162dp"
-        android:layout_height="161dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="154dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="88dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +122,10 @@
         android:id="@+id/Cifrão"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="296dp"
         android:layout_marginEnd="4dp"
-        android:textSize="16sp"
         android:text="R$ "
+        android:textSize="16sp"
 
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/textSaldo"
@@ -135,16 +135,158 @@
         android:id="@+id/textSaldo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
-        android:textSize="16sp"
+        android:layout_marginTop="296dp"
         android:text=" "
+        android:textSize="16sp"
         android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/view2"
+        android:layout_width="350dp"
+        android:layout_height="194dp"
+        android:background="@drawable/container_barra_menu"
+        app:layout_constraintBottom_toTopOf="@+id/BarraInferior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_deslogar"
+        app:layout_constraintVertical_bias="0.897" />
 
+
+
+
+    <TextView
+        android:id="@+id/textTransferir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transferir Moedas"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <EditText
+        android:id="@+id/textValor"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/editext_container_preto"
+        android:inputType="number"
+        android:hint="R$"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/textTransferir"
+        app:layout_constraintVertical_bias="0.176"
+        tools:ignore="HardcodedText,RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/textIdUser"
+        android:layout_width="231dp"
+        android:layout_height="24dp"
+        android:background="@drawable/editext_container_preto"
+        android:hint="ID"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/textValor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textValor"
+        app:layout_constraintTop_toBottomOf="@+id/textValor"
+        app:layout_constraintVertical_bias="0.204" />
+
+
+    <Button
+        android:id="@+id/ConcluirTransferencia"
+        android:layout_width="97dp"
+        android:layout_height="34dp"
+        android:onClick="ConcluirTransferencia"
+        android:text="Transferir"
+        android:textSize="10dp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/textIdUser"
+        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintStart_toStartOf="@+id/textIdUser"
+        app:layout_constraintTop_toBottomOf="@+id/textIdUser" />
+
+    <Button
+        android:id="@+id/bt_deslogar"
+        style="@style/button"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:onClick="deslogar"
+        android:text="Sair"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/BarraInferior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511" />
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="33dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.548"
+        app:srcCompat="@drawable/baseline_email_24" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="32dp"
+        android:layout_height="29dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.615"
+        app:srcCompat="@drawable/baseline_local_phone_24" />
+
+    <TextView
+        android:id="@+id/TextTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.611"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.542"
+        tools:ignore="MissingConstraints" />
     <View
         android:id="@+id/ViewMenu"
         android:layout_width="157dp"
@@ -155,8 +297,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </View>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <ImageView
         android:id="@+id/ViewIconeMinimizar"
@@ -171,76 +313,6 @@
         app:layout_constraintTop_toTopOf="@+id/ViewMenu"
         app:layout_constraintVertical_bias="0.035"
         app:srcCompat="@drawable/baseline_menu_24" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="33dp"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595"
-        app:srcCompat="@drawable/baseline_email_24" />
-
-    <TextView
-        android:id="@+id/textEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="32dp"
-        android:layout_height="29dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679"
-        app:srcCompat="@drawable/baseline_local_phone_24" />
-
-    <TextView
-        android:id="@+id/TextTelefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/bt_deslogar"
-        style="@style/button"
-        android:layout_width="144dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="376dp"
-        android:onClick="deslogar"
-        android:text="Sair"
-        android:textSize="16sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/BarraInferior"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/AbaUsuarios"
@@ -261,59 +333,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.174" />
 
-    <TextView
-        android:id="@+id/textTransferir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Transferir Moedas"
-        app:layout_constraintBottom_toBottomOf="@+id/BarraInferior"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextTelefone"
-        app:layout_constraintVertical_bias="0.023" />
 
-    <EditText
-        android:id="@+id/textValor"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/editext_container_preto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:inputType="number"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textTransferir"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/textIdUser"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/editext_container_preto"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.005"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textTransferir"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <Button
-        android:id="@+id/ConcluirTransferencia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
-        android:text="Transferir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="ConcluirTransferencia"
-        app:layout_constraintHorizontal_bias="0.834"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_deslogar"
-        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
